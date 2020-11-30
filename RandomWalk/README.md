@@ -7,9 +7,12 @@
     The code also makes two figures, one shows the original lattice grid. One with the simulated random diffusion path. 
     The overall diffusion path was defined given slightly higher priority to move forward. 
     (Forward: 36.4%, vertical: 34.8%, backward: 28.8%)
-    The local diffusion path was defined by given higher proiortiy to move to the neighbour gird site with higher level of defect,
-    There is a 10% change of moving to lower defect site. 
+    The local diffusion path was defined by given higher priority to move to the neighbour gird site with more defects,
+    There is also a 10% change of abnormal behavior which move to lower defect site. 
 
     # Usage:
     # python 2d_random.py -a 20
-    # This make a 20 by 20 lattice grid with randomly distributed lattice point, the diffusion behavior is same to the previous lattice gird with defect rings. 
+    # This make a 20 by 20 lattice grid with randomly distributed lattice point, the diffusion behavior is same to the above.
+    
+    # Generally multiple runs should be applied to generate data for analysis, here the mult_run.sh make 100 50*50 lattice grid.
+      Each grid has 20 defect rings expand to 3 unit cell length. The path trajectory are combined to the data file, which can be plot by the violineplt.py
