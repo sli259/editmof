@@ -38,9 +38,6 @@ def buildMOF(x, y, z):
     return dcoord, mof, coord, coef_list
 
 
-# In[15]:
-
-
 def find2Dneigh(smof):
     neigh_list = []
     smof_x = int(smof[0])
@@ -57,9 +54,6 @@ def find2Dneigh(smof):
             neigh_list.append(list1[i]) 
     
     return neigh_list
-
-
-# In[16]:
 
 
 def forwardN(smof):
@@ -110,11 +104,6 @@ def forwardN(smof):
             
     return sub_list
 
-
-# In[17]:
-
-
-#sub_list = [(0, 26)]
 
 def compNeigh(sub_list, dcoord):
     neigh_D, str_list, mof_f = [], [], []
@@ -172,10 +161,6 @@ def compNeigh(sub_list, dcoord):
     return neigh_D, str_list, mof_f
 
 
-
-# In[18]:
-
-
 def caldist(mof1, mof2):
     dist = math.sqrt(((mof2[0]-mof1[0])**2) + ((mof2[1]-mof1[1])**2)) 
     #for 3D walk
@@ -230,20 +215,15 @@ def randwalk(smof, N, dcoord):
         path.append(smof)
         time = time1 + time2
         if len(sub_list) == 0 or (mof_f[0] == A-1):
-#             print("Reach the boundary before reach the defined iteration, total walk:", i+1, "steps")
             break
         
     return path, dist, time, dt_list, dx_list
-
-
-# In[33]:
 
 
 def cmap(path, coef_list):
     w = A 
     h = B 
     d = 100
-#    plt.figure(figsize=(w/5, h/5), dpi=d)
     relist = np.array([float(i) for i in coef_list]).reshape(A,B)
     
     color_map = plt.imshow(relist)
@@ -258,18 +238,11 @@ def cmap(path, coef_list):
         
     color_map = plt.imshow(relist)
     color_map.set_cmap("Blues_r")
-#    plt.colorbar()
-#    plt.show()
+
     plt.savefig('temp2.png')
-
-    
-
-
-# In[23]:
 
 
 if __name__ == '__main__':
-    # Parse Command-line Input
     parser = argparse.ArgumentParser(description='Generate 2D walk plot and data')
     parser.add_argument('-a', nargs=1, help='Input lattice dimension', required=True)
     args = parser.parse_args()
@@ -289,16 +262,4 @@ if __name__ == '__main__':
         neigh_D, str_list, mof_f = compNeigh(sub_list, dcoord)
         path, dist, time, dt_list, dx_list = randwalk(smof, N, dcoord)
         cmap(path, coef_list) 
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
