@@ -1,5 +1,5 @@
-# editmof
-#Create random MOF frames with CreateMOF.sh
+    # editmof
+    # Create random MOF frames with CreateMOF.sh
 #Syntex: ./Create.sh filename number_of_frame number_of_defect
 #For example:
 #./Create.sh uc.cif 8 3
