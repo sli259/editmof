@@ -451,6 +451,6 @@ if __name__ == '__main__':
         y = [ i for i in range(B)]
         z = [ i for i in range(C)]
     
-   #     makeplt(R, num_points)
+        makeplt(R, num_points)
         pltdata(R, num_points)
     
