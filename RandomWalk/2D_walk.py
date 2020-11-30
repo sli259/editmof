@@ -38,16 +38,13 @@ def buildMOF(x, y, z):
     for i in mof:
         coef_list.append(dcoef[i])
         
-
     return dcoord, coord, coef_list, mof
-
 
 
 def get_key(val): 
     for key, value in dcoef.items(): 
          if val == value: 
             return key 
-
 
 def valid(points, p, distance):
     tx, ty = p
@@ -59,7 +56,6 @@ def valid(points, p, distance):
         if distance > math.sqrt(ax * ax + ay * ay):
             return False
     return True
-
             
 def genselect(A, B, num_points, distance):
     matrix = np.random.rand(A, B)
@@ -93,7 +89,6 @@ def neigh(smof, R):
     return neigh
     
 
-
 def makeRing(smof, R):
     l = [i for i in range(1, R+1)]
     p = []
@@ -121,14 +116,10 @@ def makeDir(selected, R):
     for d in tp:
         for k, v in d.items(): 
             super_dict[k] = list(set(super_dict[k] + v))
-    
-    
     for elem in super_dict.keys():
         combined_dict[elem] = super_dict[elem]
     
-        
     return combined_dict
-
 
 
 def update2D(selected, coef_list, coord, R):
@@ -164,7 +155,6 @@ def update2D(selected, coef_list, coord, R):
     dcoord = dict(zip(coord,mof_list)) 
   
     return dcoord, relist, mof_ary
-
 
 
 def forwardN(smof):
@@ -207,14 +197,13 @@ def forwardN(smof):
         else:
             x = 1
             y = [-1, 0, 1]
-      
+   
     for i in y: 
         nei_mof1 = (smof_x + x, smof_y + i)
         if nei_mof1[0] >= 0 and nei_mof1[1] >=0 and nei_mof1[0] < A and nei_mof1[1] < A:
             sub_list.append(nei_mof1)
             
     return sub_list
-
 
 
 def compNeigh(sub_list, dcoord):
@@ -228,7 +217,6 @@ def compNeigh(sub_list, dcoord):
         a = dcoord[str_list_i] # 6.0
 
         neigh_D.append(str(dcoord[str_list_i])) #'4'
-
         D_list.append(str(a))
 
     # find the next mof to walk to:
@@ -253,7 +241,6 @@ def compNeigh(sub_list, dcoord):
                     pool.append(str(new_d[i])[1:-1].replace("'", ""))
             temp = random.choice(random.choice(pool).split(', '))
             mof_f = list(map(int, temp.split(',')))
-
     else:
         for i in d:
             f = int(len(d[i]))*int(i[1])
@@ -268,10 +255,8 @@ def compNeigh(sub_list, dcoord):
                 tp2.append(j)
         temp = random.choice(tp2)
         mof_f = list(map(int, temp.split(',')))
-    
-    
+   
     return neigh_D, str_list, mof_f
-
 
 
 def caldist(mof1, mof2):
@@ -313,11 +298,8 @@ def randwalk(smof, N, dcoord):
 
         temp += d_time
         dt_list.append(round(temp, 3))
-
-       
         dist += caldist(mof_f, smof)
-        dx_list.append(round(dist, 3))
-        
+        dx_list.append(round(dist, 3))      
         sub_list = forwardN(mof_f)
         
         if smof in sub_list:
@@ -332,7 +314,6 @@ def randwalk(smof, N, dcoord):
             break
         
     return path, dist, time, dt_list, dx_list
-
 
 
 def plot(mof_ary, path):
@@ -364,7 +345,6 @@ def plot(mof_ary, path):
     plt.savefig('fig_path.png')
 
 
-
 def makeplt(R, num_points):
     distance = 2 * R
     mof, clist, coord = [], [], []
@@ -377,10 +357,6 @@ def makeplt(R, num_points):
     path, dist, time, dt_list, dx_list = randwalk(smof, N, dcoord)
     plot(mof_ary, path)
     
-
-
-# In[59]:
-
 
 def pltdata(R, num_points):
     distance = 2 * R
@@ -428,17 +404,14 @@ def pltdata(R, num_points):
     out.close()
         
 
-
 if __name__ == '__main__':
     # Parse Command-line Input
     parser = argparse.ArgumentParser(description='Generate 2D walk plot and data')
     parser.add_argument('-a', nargs=1, help='Input lattice dimension', required=True)
     parser.add_argument('-r', nargs=1, help='Input defect ring radius', required=True)
     parser.add_argument('-n', nargs=1, help='Input number of defect rings', required=True)
-    args = parser.parse_args()
-    
+    args = parser.parse_args()   
     if vars(args)['r'][0] != 'NULL' and vars(args)['a'] != 'NULL' and vars(args)['n'] != 'NULL':
-
         A = int(vars(args)['a'][0])
         R = int(vars(args)['r'][0])
         num_points = int(vars(args)['n'][0])
